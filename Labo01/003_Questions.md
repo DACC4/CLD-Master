@@ -3,14 +3,17 @@
   instance?
 
 ```
-TODO
+It depends on the category of EC2 instances types (General Purpose, Compute, ...).
+
+smallest : 1 vCPUs, 0.5GiB RAM (t2.nano)
+biggest : 128 vCPUs, 2TiB RAM (p5.48xlarge)
 ```
 
 * How long did it take for the new instance to get into the _running_
   state?
 
 ```
-TODO
+~10 seconds
 ```
 
 * Using the commands to explore the machine listed earlier, respond to
@@ -20,19 +23,19 @@ TODO
       the machine?
       
     ```
-    TODO
+    The machine is in UTC and we are in CET (1 hour difference)
     ```
 
     * What's the name of the hypervisor?
     
     ```
-    TODO
+    Nitro Hypervisor
     ```
 
     * How much free space does the disk have?
     
     ```
-    TODO
+    6G
     ```
 
 
