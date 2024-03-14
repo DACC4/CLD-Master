@@ -6,7 +6,7 @@ data "aws_network_interface" "dmz_nat_net" {
   id = "eni-002339a1b15500f68"
 }
 
-resource "aws_subnet" "subnet_a" {
+resource "aws_subnet" "subnet" {
   vpc_id = data.aws_vpc.vpc.id
   cidr_block = var.cidr_block_a
   availability_zone = "eu-west-3a"
@@ -30,5 +30,5 @@ resource "aws_route_table" "route_table" {
 
 resource "aws_route_table_association" "route_table_assoc" {
   route_table_id = aws_route_table.route_table.id
-  subnet_id = aws_subnet.subnet_a.id
+  subnet_id = aws_subnet.subnet.id
 }
