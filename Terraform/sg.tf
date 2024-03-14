@@ -36,4 +36,20 @@ resource "aws_vpc_security_group_ingress_rule" "authorize_drupal_sg" {
   referenced_security_group_id = aws_security_group.sg_drupal.id
 }
 
+resource "aws_security_group" "sg_rds" {
+  name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
+  description = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
 
+  vpc_id = data.aws_vpc.vpc.id
+
+  ingress {
+    from_port = 3306
+    to_port = 3306
+    protocol = "TCP"
+    security_groups = [aws_security_group.sg_drupal.id]
+  }
+
+  tags = {
+    Name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
+  }
+}
