@@ -6,7 +6,7 @@ data "aws_key_pair" "kp_drupal" {
 resource "aws_instance" "drupal" {
   ami = "ami-0fdefd1ed473b69ab"
   instance_type = "t3.micro"
-  subnet_id = aws_subnet.subnet_a.id
+  subnet_id = aws_subnet.subnet.id
   vpc_security_group_ids = [aws_security_group.sg_drupal.id]
   key_name = data.aws_key_pair.kp_drupal.key_name
 
