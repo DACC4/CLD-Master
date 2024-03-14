@@ -137,7 +137,7 @@ aws ec2 authorize-security-group-ingress \
     "Return": true,
     "SecurityGroupRules": [
         {
-            "SecurityGroupRuleId": "sgr-0be755e2ed6d2b9d6	",
+            "SecurityGroupRuleId": "sgr-02a3b7547270e0dee",
             "GroupId": "sg-003f6a093f288504c",
             "GroupOwnerId": "709024702237",
             "IsEgress": false,
@@ -165,7 +165,7 @@ aws ec2 authorize-security-group-ingress \
     "Return": true,
     "SecurityGroupRules": [
         {
-            "SecurityGroupRuleId": "sgr-03506d62433bbe735",
+            "SecurityGroupRuleId": "sgr-07a120490a8a15279",
             "GroupId": "sg-003f6a093f288504c",
             "GroupOwnerId": "709024702237",
             "IsEgress": false,
@@ -176,12 +176,47 @@ aws ec2 authorize-security-group-ingress \
                 "GroupId": "sg-072f4e9295e67feb5",
                 "UserId": "709024702237"
             }
-        }
+        },
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "HTTP FROM DMZ"
+            }
+        ]
     ]
 }
 ```
 ### Add egress rule to security group
 Nothing to do here, by default a security group allows all outbound traffic.
+
+### Add inbound to DMZ NAT security group
+```
+aws ec2 authorize-security-group-ingress \
+    --group-id sg-0c71f4ea753e23037 \
+    --protocol -1 \
+    --port -1 \
+    --source-group sg-003f6a093f288504c
+```
+```
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-0e10c3e1958a5110b",
+            "GroupId": "sg-0c71f4ea753e23037",
+            "GroupOwnerId": "709024702237",
+            "IsEgress": false,
+            "IpProtocol": "-1",
+            "FromPort": -1,
+            "ToPort": -1,
+            "ReferencedGroupInfo": {
+                "GroupId": "sg-003f6a093f288504c",
+                "UserId": "709024702237"
+            }
+        }
+    ]
+}
+```
 
 ### Create EC2 instance
 ```
