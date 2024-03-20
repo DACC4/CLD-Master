@@ -36,4 +36,4 @@ terraform.rc
 # Ignore PEM files
 *.pem
 
-Terraform/backend.tf
+backend.tf
