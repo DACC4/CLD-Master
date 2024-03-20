@@ -9,3 +9,5 @@ variable "cidr_block_b" {
   type        = string
   default     = "10.0.3.128/28" 
 }
+
+variable "drupal_rds_password" {}
