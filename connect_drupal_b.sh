@@ -1,0 +1,1 @@
+ssh -o StrictHostKeyChecking=no bitnami@localhost -p 2223 -i CLD_KEY_DRUPAL_DEVOPSTEAM03.pem

@@ -7,21 +7,21 @@ data "aws_security_group" "sg_dmz_nat" {
 }
 
 resource "aws_security_group" "sg_drupal" {
-  name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03"
+  name        = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03"
   description = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03"
-  vpc_id = data.aws_vpc.vpc.id
+  vpc_id      = data.aws_vpc.vpc.id
 
   ingress {
-    from_port = 22
-    to_port = 22
-    protocol = "TCP"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "TCP"
     security_groups = [data.aws_security_group.sg_dmz_ssh_rproxy.id]
   }
 
   ingress {
-    from_port = 8080
-    to_port = 8080
-    protocol = "TCP"
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "TCP"
     security_groups = [data.aws_security_group.sg_dmz_ssh_rproxy.id]
   }
 
@@ -31,21 +31,21 @@ resource "aws_security_group" "sg_drupal" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "authorize_drupal_sg" {
-  security_group_id = data.aws_security_group.sg_dmz_nat.id
-  ip_protocol = -1
+  security_group_id            = data.aws_security_group.sg_dmz_nat.id
+  ip_protocol                  = -1
   referenced_security_group_id = aws_security_group.sg_drupal.id
 }
 
 resource "aws_security_group" "sg_rds" {
-  name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
+  name        = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
   description = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
 
   vpc_id = data.aws_vpc.vpc.id
 
   ingress {
-    from_port = 3306
-    to_port = 3306
-    protocol = "TCP"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "TCP"
     security_groups = [aws_security_group.sg_drupal.id]
   }
 
