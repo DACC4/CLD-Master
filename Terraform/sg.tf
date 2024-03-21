@@ -22,7 +22,7 @@ resource "aws_security_group" "sg_drupal" {
     from_port       = 8080
     to_port         = 8080
     protocol        = "TCP"
-    security_groups = [data.aws_security_group.sg_dmz_ssh_rproxy.id]
+    security_groups = [aws_security_group.sg_alb.id]
   }
 
   tags = {
@@ -51,5 +51,23 @@ resource "aws_security_group" "sg_rds" {
 
   tags = {
     Name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
+  }
+}
+
+resource "aws_security_group" "sg_alb" {
+  name = "SG-DEVOPSTEAM03-LB"
+  description = "SG-DEVOPSTEAM03-LB"
+
+  vpc_id = data.aws_vpc.vpc.id
+
+  ingress {
+    from_port = 8080
+    to_port = 8080
+    protocol = "TCP"
+    security_groups = [data.aws_security_group.sg_dmz_ssh_rproxy.id]
+  }
+
+  tags = {
+    Name = "SG-DEVOPSTEAM03-LB"
   }
 }
