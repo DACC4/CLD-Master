@@ -18,6 +18,11 @@ resource "aws_instance" "drupal_a" {
   vpc_security_group_ids = [aws_security_group.sg_drupal.id]
   key_name               = data.aws_key_pair.kp_drupal.key_name
 
+  root_block_device {
+    volume_size = 10
+    volume_type = "gp3"
+  }
+
   lifecycle {
     ignore_changes = [ami]
   }
@@ -35,6 +40,11 @@ resource "aws_instance" "drupal_b" {
   vpc_security_group_ids = [aws_security_group.sg_drupal.id]
   key_name               = data.aws_key_pair.kp_drupal.key_name
 
+  root_block_device {
+    volume_size = 10
+    volume_type = "gp3"
+  }
+
   lifecycle {
     ignore_changes = [ami]
   }
@@ -46,6 +56,11 @@ resource "aws_instance" "drupal_b" {
 
 resource "aws_ec2_instance_state" "drupal_a" {
   instance_id = aws_instance.drupal_a.id
+  state       = "running"
+}
+
+resource "aws_ec2_instance_state" "drupal_b" {
+  instance_id = aws_instance.drupal_b.id
   state       = "running"
 }
 
