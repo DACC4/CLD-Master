@@ -25,6 +25,13 @@ resource "aws_security_group" "sg_drupal" {
     security_groups = [aws_security_group.sg_alb.id]
   }
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03"
   }
@@ -49,6 +56,13 @@ resource "aws_security_group" "sg_rds" {
     security_groups = [aws_security_group.sg_drupal.id]
   }
 
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   tags = {
     Name = "SG-PRIVATE-DRUPAL-DEVOPSTEAM03-RDS"
   }
@@ -65,6 +79,13 @@ resource "aws_security_group" "sg_alb" {
     to_port = 8080
     protocol = "TCP"
     security_groups = [data.aws_security_group.sg_dmz_ssh_rproxy.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
