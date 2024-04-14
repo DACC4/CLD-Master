@@ -17,18 +17,22 @@ htop
 
 [OUTPUT]
 //copy the part representing vCPus, RAM and swap usage
+2 vCPUs
 ```
+![HTOP](./img/DEVOPS03/CLD_AWS_EC2_HTOP.png)
 
 ### Stress your instance
 
 ```
 [INPUT]
 //stress command
+stress -c 2
 
 [OUTPUT]
 //copy the part representing vCPus, RAM and swap usage
 //tip : use two ssh sessions....
 ```
+![STRESS](./img/DEVOPS03/CLD_AWS_EC2_STRESS.png)
 
 * (Scale-IN) Observe the autoscaling effect on your infa
 
@@ -37,30 +41,28 @@ htop
 [INPUT]
 //Screen shot from cloud watch metric
 ```
-[Sample](./img/CLD_AWS_CLOUDWATCH_CPU_METRICS.PNG)
+![TARGET_TRACKING](./img/DEVOPS03/CLD_AWS_CLOUDWATCH_CPU_METRICS_TARGET_TRACKING.PNG)
 
 ```
-//TODO screenshot of ec2 instances list (running state)
+//Screenshot of ec2 instances list (running state)
 ```
-[Sample](./img/CLD_AWS_EC2_LIST.PNG)
+![RUNNING](./img/DEVOPS03/CLD_AWS_EC2_LIST_RUNNING.PNG)
 
 ```
-//TODO Validate that the various instances have been distributed between the two available az.
-[INPUT]
-//aws cli command
-
+//Validate that the various instances have been distributed between the two available az.
 [OUTPUT]
 ```
+![IN_SERVICE](./img/DEVOPS03/CLD_AWS_EC2_LIST_IN_SERVICE.PNG)
 
 ```
-//TODO screenshot of the activity history
+//Screenshot of the activity history
 ```
-[Sample](./img/CLD_AWS_ASG_ACTIVITY_HISTORY.PNG)
+[ACTIVITY_LAUNCH](./img/DEVOPS03/CLD_AWS_ASG_ACTIVITY_HISTORY_LAUNCH.PNG)
 
 ```
-//TODO screenshot of the cloud watch alarm target tracking
+//Screenshot of the cloud watch alarm target tracking
 ```
-[Sample](./img/CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS.PNG)
+![TARGET_TRACKING](./img/DEVOPS03/CLD_AWS_CLOUDWATCH_CPU_METRICS_TARGET_TRACKING.PNG)
 
 
 * (Scale-OUT) As soon as all 4 instances have started, end stress on the main machine.
@@ -68,16 +70,21 @@ htop
 [Change the default cooldown period](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html)
 
 ```
-//TODO screenshot from cloud watch metric
+//Screenshot from cloud watch metric
 ```
+![TARGET_TRACKING](./img/DEVOPS03/CLD_AWS_CLOUDWATCH_CPU_METRICS_TARGET_TRACKING.PNG)
+
 
 ```
-//TODO screenshot of ec2 instances list (terminated state)
+//Screenshot of ec2 instances list (terminated state)
 ```
+![TERMINATED](./img/DEVOPS03/CLD_AWS_EC2_LIST_TERMINATED.PNG)
 
 ```
-//TODO screenshot of the activity history
+//Screenshot of the activity history
 ```
+![ACTIVITY_TERMINATE](./img/DEVOPS03/CLD_AWS_ASG_ACTIVITY_HISTORY_TERMINATE.PNG)
+
 
 ## Release Cloud resources
 
