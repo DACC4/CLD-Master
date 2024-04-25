@@ -56,7 +56,8 @@ Create a simple web application as follows.
    `HelloAppEngine` file. What does the code do?
 
    ```
-   //TODO
+   Elle affiche un message de bienvenue qui inclut des informations sur l'environnement Java quand un utilisateur accède à l'URL /hello. La méthode getInfo() permet d'obtenir des informations supplémentaires sur l'environnement d'exécution, mais elle n'est pas utilisée dans la partie servlet à moins qu'elle ne soit appelée ailleurs.
+
    ```
 
 6. Note the annotation starting with `@WebServlet` in front of the
@@ -66,14 +67,15 @@ Create a simple web application as follows.
    `web.xml`. What information does it contain? And what is its use ?
 
    ```
-   //TODO
+   Le descripteur de déploiement de l'application Web. Il s'agit d'un fichier XML décrivant les servlets et les autres composants de l'application, ainsi que les paramètres d'initialisation et les contraintes de sécurité gérées par le conteneur qu'on veut que le serveur applique.
    ```
 
 8. Inspect the Google App Engine configuration file
    `appengine-web.xml` in `webapp/WEB-INF`. What information does it contain?
 
    ```
-   //TODO
+   // TODO: en théorie il contient ça, mais dans notre cas précis non
+   En plus du descripteur de déploiement web.xml, les applications Java d'App Engine utilisent un fichier de configuration, nommé appengine-web.xml, pour spécifier les informations relatives à l'application et identifier les fichiers statiques (tels que les images) dans le fichier WAR de l'application ainsi que les fichiers de ressources utilisés par l'application.
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -85,7 +87,8 @@ Create a simple web application as follows.
     `index.jsp` spotted in `web.xml`. What is its use ?
 
     ```
-    //TODO
+    //TODO vérifier ma définition
+    Il s'agit d'un fichier JSP (Java Server Page) qui est utilisé pour afficher la page d'accueil de l'application Web. C'est un format qui permet de générer des pages Web HTML dynamiques en utilisant Java.
     ```
 
 ---
