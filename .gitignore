@@ -41,3 +41,6 @@ backend.tf
 
 # Ignore Mac files
 .DS_Store
+
+# Ignore IntelliJ IDEA files
+.idea/
