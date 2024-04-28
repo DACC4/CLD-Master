@@ -74,8 +74,7 @@ Create a simple web application as follows.
    `appengine-web.xml` in `webapp/WEB-INF`. What information does it contain?
 
    ```
-   // TODO: en théorie il contient ça, mais dans notre cas précis non
-   En plus du descripteur de déploiement web.xml, les applications Java d'App Engine utilisent un fichier de configuration, nommé appengine-web.xml, pour spécifier les informations relatives à l'application et identifier les fichiers statiques (tels que les images) dans le fichier WAR de l'application ainsi que les fichiers de ressources utilisés par l'application.
+   appengine-web.xml est utilisé pour spécifier les informations relatives à l'application et identifier les fichiers statiques (tels que les images) dans le fichier WAR de l'application ainsi que les fichiers de ressources utilisés par l'application. Dans notre cas, ce fichier est utilisé pour définir la configuration du runtime principalement (java11, thread safe et les infos de logging).
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -87,7 +86,6 @@ Create a simple web application as follows.
     `index.jsp` spotted in `web.xml`. What is its use ?
 
     ```
-    //TODO vérifier ma définition
     Il s'agit d'un fichier JSP (Java Server Page) qui est utilisé pour afficher la page d'accueil de l'application Web. C'est un format qui permet de générer des pages Web HTML dynamiques en utilisant Java.
     ```
 
@@ -158,17 +156,21 @@ Deliverables:
   **appengine-web.xml** and **index.jsp** files in a few sentences.
 
   ```
-  //TODO Java class files
+  Java class files
+  Ce fichier est un exemple simple de servlet servant à renvoyer des informations sur l'environnement d'exécution de l'application aux clients qui envoient des requêtes HTTP GET à l'URL spécifiée.
   ```
 
   ```
-  //TODO web.xml
+  web.xml
+  Ce fichier est utilisé pour définir que la "welcome page" (la page par défaut) est le fichier index.jsp
   ```
 
   ```
-  //TODO appengine-web.xml
+  appengine-web.xml
+  Ce fichier est utilisé pour définir la configuration du runtime principalement (java11, thread safe et les infos de logging).
   ```
 
   ```
-  //TODO index.jsp
+  index.jsp
+  Sert de fichier d'index, est affiché par le chemin par défaut et contient la liste des urls utilisables (mise à jour à la main).
   ```
