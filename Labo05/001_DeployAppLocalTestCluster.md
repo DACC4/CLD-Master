@@ -175,18 +175,46 @@ You should see the application's main page titled __Todos V2__ and you should be
 
 Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report.
 
-> // TODO
-
-```````
-// TODO object descriptions
-```````
+> On n'a pas eu de difficultés pendant la mise en place de cette première partie
 
 ```yaml
 # api-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: api
+  labels:
+    component: api
+    app: todo
+spec:
+  ports:
+  - port: 8081
+    targetPort: 8081
+    name: api
+  selector:
+    app: todo
+    component: api
+  type: ClusterIP
 ```
 
 ```yaml
 # frontend-pod.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+  labels:
+    component: frontend
+    app: todo
+spec:
+  containers:
+  - name: frontend
+    image: icclabcna/ccp2-k8s-todo-frontend
+    ports:
+    - containerPort: 8080
+    env:
+    - name: API_ENDPOINT_URL
+      value: http://api:8081
 ```
 
 > [!TIP]

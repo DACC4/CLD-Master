@@ -67,18 +67,106 @@ Document any difficulties you faced and how you overcame them. Copy the object d
 
 > // TODO
 
-```````
-// TODO object descriptions
-```````
-
 ```yaml
 # frontend-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    component: api
+    app: frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+    name: frontend
+  selector:
+    app: todo
+    component: frontend
+  type: LoadBalancer
 ```
 
 Take a screenshot of the cluster details from the GKE console. Copy the output of the `kubectl describe` command to describe your load balancer once completely initialized.
 
-> // TODO
+![Details](./img/gcp_kube_details.png)
 
 ```````
-// TODO object descriptions
+$ kubectl describe services
+Name:              api
+Namespace:         default
+Labels:            app=todo
+                   component=api
+Annotations:       cloud.google.com/neg: {"ingress":true}
+Selector:          app=todo,component=api
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.76.162.180
+IPs:               10.76.162.180
+Port:              api  8081/TCP
+TargetPort:        8081/TCP
+Endpoints:         10.32.1.9:8081
+Session Affinity:  None
+Events:            <none>
+
+
+Name:                     frontend
+Namespace:                default
+Labels:                   app=frontend
+                          component=api
+Annotations:              cloud.google.com/neg: {"ingress":true}
+Selector:                 app=todo,component=frontend
+Type:                     LoadBalancer
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.76.169.199
+IPs:                      10.76.169.199
+LoadBalancer Ingress:     34.65.64.30
+Port:                     frontend  80/TCP
+TargetPort:               8080/TCP
+NodePort:                 frontend  31568/TCP
+Endpoints:                10.32.0.5:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age    From                Message
+  ----    ------                ----   ----                -------
+  Normal  EnsuringLoadBalancer  4m58s  service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   4m15s  service-controller  Ensured load balancer
+
+
+Name:              kubernetes
+Namespace:         default
+Labels:            component=apiserver
+                   provider=kubernetes
+Annotations:       <none>
+Selector:          <none>
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.76.160.1
+IPs:               10.76.160.1
+Port:              https  443/TCP
+TargetPort:        443/TCP
+Endpoints:         10.172.0.2:443
+Session Affinity:  None
+Events:            <none>
+
+
+Name:              redis-svc
+Namespace:         default
+Labels:            component=redis
+Annotations:       cloud.google.com/neg: {"ingress":true}
+Selector:          app=todo,component=redis
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.76.173.254
+IPs:               10.76.173.254
+Port:              redis  6379/TCP
+TargetPort:        6379/TCP
+Endpoints:         10.32.1.8:6379
+Session Affinity:  None
+Events:            <none>
 ```````
