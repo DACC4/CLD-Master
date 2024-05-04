@@ -182,7 +182,7 @@ Document any difficulties you faced and how you overcame them. Copy the object d
 apiVersion: v1
 kind: Service
 metadata:
-  name: api
+  name: api-svc
   labels:
     component: api
     app: todo
@@ -214,7 +214,7 @@ spec:
     - containerPort: 8080
     env:
     - name: API_ENDPOINT_URL
-      value: http://api:8081
+      value: http://api-svc:8081
 ```
 
 > [!TIP]

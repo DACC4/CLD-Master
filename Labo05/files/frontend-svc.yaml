@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: frontend-svc
   labels:
-    component: api
-    app: frontend
+    component: frontend
+    app: todo
 spec:
   ports:
   - port: 80

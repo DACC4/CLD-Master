@@ -65,17 +65,17 @@ Now you can verify if the ToDo application is working correctly.
 
 Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report (if they are unchanged from the previous task just say so).
 
-> // TODO, talk about gcloud cli
+> La seule difficulté mineure rencontrée pendant cette partie est le fait que le gcloud cli s'installe de manière portable dans le répertoire courant. Je l'avais donc supprimé sans faire exprès car il était dans mon dossier Downloads. J'ai donc dû le réinstaller. Sinon tout s'est bien passé.
 
 ```yaml
 # frontend-svc.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: frontend-svc
   labels:
-    component: api
-    app: frontend
+    component: frontend
+    app: todo
 spec:
   ports:
   - port: 80
@@ -93,7 +93,7 @@ Take a screenshot of the cluster details from the GKE console. Copy the output o
 
 ```````
 $ kubectl describe services
-Name:              api
+Name:              api-svc
 Namespace:         default
 Labels:            app=todo
                    component=api
@@ -102,38 +102,38 @@ Selector:          app=todo,component=api
 Type:              ClusterIP
 IP Family Policy:  SingleStack
 IP Families:       IPv4
-IP:                10.76.162.180
-IPs:               10.76.162.180
+IP:                10.76.170.167
+IPs:               10.76.170.167
 Port:              api  8081/TCP
 TargetPort:        8081/TCP
-Endpoints:         10.32.1.9:8081
+Endpoints:         10.32.1.10:8081
 Session Affinity:  None
 Events:            <none>
 
 
-Name:                     frontend
+Name:                     frontend-svc
 Namespace:                default
-Labels:                   app=frontend
-                          component=api
+Labels:                   app=todo
+                          component=frontend
 Annotations:              cloud.google.com/neg: {"ingress":true}
 Selector:                 app=todo,component=frontend
 Type:                     LoadBalancer
 IP Family Policy:         SingleStack
 IP Families:              IPv4
-IP:                       10.76.169.199
-IPs:                      10.76.169.199
-LoadBalancer Ingress:     34.65.64.30
+IP:                       10.76.162.118
+IPs:                      10.76.162.118
+LoadBalancer Ingress:     34.65.144.165
 Port:                     frontend  80/TCP
 TargetPort:               8080/TCP
-NodePort:                 frontend  31568/TCP
-Endpoints:                10.32.0.5:8080
+NodePort:                 frontend  31987/TCP
+Endpoints:                10.32.0.6:8080
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:
-  Type    Reason                Age    From                Message
-  ----    ------                ----   ----                -------
-  Normal  EnsuringLoadBalancer  4m58s  service-controller  Ensuring load balancer
-  Normal  EnsuredLoadBalancer   4m15s  service-controller  Ensured load balancer
+  Type    Reason                Age   From                Message
+  ----    ------                ----  ----                -------
+  Normal  EnsuringLoadBalancer  47s   service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   6s    service-controller  Ensured load balancer
 
 
 Name:              kubernetes
