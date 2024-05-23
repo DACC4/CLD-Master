@@ -44,3 +44,6 @@ backend.tf
 
 # Ignore IntelliJ IDEA files
 .idea/
+
+# Ignore Credentials
+Labo06/credentials/*
