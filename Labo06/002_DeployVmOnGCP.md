@@ -313,13 +313,15 @@ Yes, for example if we want to rename the instance, terraform will need to delet
 * Explain what you would need to do to manage multiple instances.
 
 ```
-//TODO
+There are multiple possibilities depending on the use case:
+- We can add multiple resource `google_compute_instance` in the main.tf which allows to have multiple instances with different parameters.
+- We can use the `count` parameter in the resource if we need several identical instances.
+- Another possibility is to define a list of parameters that would be different and use a for_each loop to create the instances using for each a parameter from the list. This would allow to dynamically create some different instances.
+
 ```
 
 * Take a screenshot of the Google Cloud Console showing your Google Compute instance and put it in the report.
 
-```
-//TODO
-```
+![Google Compute Instance](./img/computeEngine.png)
 
 * Deliver a folder "terraform" with your configuration.
