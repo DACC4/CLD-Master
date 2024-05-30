@@ -1,3 +1,5 @@
+// This file contains the configuration to store the state (and the lock as well).
+// Here we use postgres.
 terraform {
   backend "pg" {
     conn_str = "postgres://cld:<pass>@<server>/cld_terraform?sslmode=disable"

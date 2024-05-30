@@ -1,8 +1,13 @@
+// This is the configuration for the provider we're using. 
+// Here we specify the region in which the provider will create the resources,
+// the credentials to use when creating the resources
+// the project id (is unique)
 provider "google" {
   project     = var.gcp_project_id
   region      = "europe-west6-a"
   credentials = file("${var.gcp_service_account_key_file_path}")
 }
+// Below are all the resources we create
 
 resource "google_compute_instance" "default" {
   name         = var.gce_instance_name

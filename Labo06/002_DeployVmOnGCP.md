@@ -159,7 +159,6 @@ Since the command output isn't JSON, we copied it to a file named "planCache.txt
 
 * Test access via ssh
 
-//TODO
 [INPUT]
 ```bash
 ssh ansible@34.65.216.43 -i ../credentials/labgce-ssh-key
@@ -239,7 +238,6 @@ With a local backend, the state is saved locally on the current working director
 * What happens if you reapply the configuration (1) without changing `main.tf` (2) with a change in `main.tf`? Do you see any changes in Terraform's output? Why? Can you think of examples where Terraform needs to delete parts of the infrastructure to be able to reconfigure it?
 
 ```
-//TODO
 1. Reapply without changing main.tf
 google_compute_firewall.http: Refreshing state... [id=projects/cld-lab06-iac/global/firewalls/allow-http]
 google_compute_firewall.ssh: Refreshing state... [id=projects/cld-lab06-iac/global/firewalls/allow-ssh]

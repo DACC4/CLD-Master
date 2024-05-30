@@ -26,9 +26,15 @@ You should now be able to ping the webservers group:
 ansible webservers -m ping
 ```
 
-//TODO
 [OUTPUT]
 ```json
+gce_instance | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
 ```
 
 The output should be the same as before.
@@ -106,24 +112,42 @@ You can then test the new web site by pointing your browser to the
 address of the managed server. You should see the homepage showing
 "NGINX, configured by Ansible".
 
-//TODO
 [INPUT]
 ```bash
-curl <yourIP>
+curl 34.65.194.202
 ```
 
 [OUTPUT]
 ```html
+<html>
+    <head>
+    <title>Welcome to ansible</title> </head>
+    <body>
+    <h1>nginx, configured by Ansible</h1>
+    <p>If you can see this, Ansible successfully installed nginx.</p>
+    <p>Ansible managed</p>
+    <p>Some facts Ansible gathered about this machine:
+    <table>
+        <tr><td>OS family:</td><td>Debian</td></tr>
+        <tr><td>Distribution:</td><td>Ubuntu</td></tr>
+        <tr><td>Distribution version:</td><td>20.04</td></tr>
+    </table>
+    </p>
+    </body>
+</html>
 ```
 
 Deliverables:
 
 - Explain the usage of each file and its contents, add comments to the different blocks if needed (we must ensure that you understood what you have done). Link to the online documentation. Link to the online documentation.
 
-//TODO
 |FileName|Explanation|
 |:--|:--|
-||||
+|nginx.conf|Defines the niginx conf that will be used on the host|
+|index.html.j2|Defines the html index page (in jinja to have variables injected from ansible)|
+|web.yml| Define tasks to run (here install niginx, copy conf file, create symbolic link between two files, copy html index page and run nginx).|
+|ansible.cfg|Define the ansible config that will apply to all hosts (here defines private key, user name)|
+|hosts|Defines the inventory of all hosts and in which group they are|
 
 
 * Deliver a folder "ansible" with your configuration.
